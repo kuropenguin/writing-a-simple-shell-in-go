@@ -27,8 +27,10 @@ func execInput(input string) error {
 	// Remove the newline character.
 	input = strings.TrimSuffix(input, "\n")
 
-	// Prepare the command to execute.
-	cmd := exec.Command(input)
+	args := strings.Split(input, " ")
+
+	// Pass the program and the arguments separately.
+	cmd := exec.Command(args[0], args[1:]...)
 
 	// Set the correct output device.
 	cmd.Stderr = os.Stderr
